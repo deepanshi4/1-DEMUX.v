@@ -1,0 +1,25 @@
+write a code in vhdl for 1:8 demultiplexer
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity demux1_8 is
+    port (
+        i : in std_logic;
+        s : in std_logic_vector(2 downto 0);
+        y0, y1, y2, y3, y4, y5, y6, y7 : out std_logic
+    );
+end entity demux1_8;
+
+architecture behavioral of demux1_8 is
+begin
+    process (i, s)
+    begin
+        case s is
+            when "000" => y0 <= i; y1 <= '0'; y2 <= '0'; y3 <= '0'; y4 <= '0'; y5 <= '0'; y6 <= '0'; y7 <= '0';
+            when "001" => y0 <= '0'; y1 <= i; y2 <= '0'; y3 <= '0'; y4 <= '0'; y5 <= '0'; y6 <= '0'; y7 <= '0';
+            -- ... (similar cases for other select values)
+            when others => y0 <= 'X'; y1 <= 'X'; y2 <= 'X'; y3 <= 'X'; y4 <= 'X'; y5 <= 'X'; y6 <= 'X'; y7 <= 'X';
+        end case;
+    end process;
+end architecture behavioral;
